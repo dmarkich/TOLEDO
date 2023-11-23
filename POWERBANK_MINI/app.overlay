@@ -1,0 +1,55 @@
+/*
+ * Copyright (c) 2022 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+ */
+
+
+/ {
+
+	chosen {
+		zephyr,bt-uart = &uart0;
+		zephyr,bt-hci-rpmsg-ipc = &uart0;
+		nordic,nus-uart = &uart0;
+	};
+
+};
+
+&pinctrl {
+	
+	i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 26)>,
+					<NRF_PSEL(TWIM_SCL, 0, 27)>;
+		};
+	};
+
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 26)>,
+					<NRF_PSEL(TWIM_SCL, 0, 27)>;
+			low-power-enable;
+		};
+	};
+
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twim";
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_FAST>; 
+
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+
+	mp2722: mp2722@3f{
+		compatible = "i2c-device";
+		reg = < 0x3f >;
+		label = "mp2722";
+	};
+
+
+};
+
+

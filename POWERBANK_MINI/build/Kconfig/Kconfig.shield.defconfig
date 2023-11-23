@@ -1,0 +1,3 @@
+osource "/home/diego/Nordic/ncs/boards/shields/*/Kconfig.defconfig"
+osource "/home/diego/Nordic/ncs/SignatureParfumes/peripheral_uart/boards/shields/*/Kconfig.defconfig"
+osource "/home/diego/Nordic/ncs/nrf/boards/shields/*/Kconfig.defconfig"

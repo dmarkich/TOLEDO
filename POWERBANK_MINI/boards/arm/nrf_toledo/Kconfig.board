@@ -1,0 +1,8 @@
+# BL654 DVK board configuration
+
+# Copyright (c) 2019 Laird Connectivity
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_NRF_TOLEDO
+	bool "NRF_TOLEDO"
+	depends on SOC_NRF52840_QIAA

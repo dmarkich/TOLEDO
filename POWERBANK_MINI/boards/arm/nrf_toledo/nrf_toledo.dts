@@ -1,0 +1,179 @@
+/*
+ * Copyright (c) 2019 Laird Connectivity
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+// #include "/home/diego/Nordic/ncs/zephyr/dts/arm/nordic/nrf52840_qiaa.dtsi"
+#include <nordic/nrf52840_qiaa.dtsi>
+#include "nrf_toledo-pinctrl.dtsi"
+
+/ {
+	model = "Maiori TOLEDO nRF52840";
+	compatible = "nordic,nrf_toledo";
+
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,uart-mcumgr = &uart0;
+		zephyr,bt-mon-uart = &uart0;
+		zephyr,bt-c2h-uart = &uart0;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+		zephyr,code-partition = &slot0_partition;
+	};
+
+	leds {
+		compatible = "gpio-leds";
+		led1: led_1 {
+			gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
+			label = "LED 1";
+		};
+		led2: led_2 {
+			gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+			label = "LED 2";
+		};
+		led3: led_3 {
+			gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;
+			label = "LED 3";
+		};
+		led4: led_4 {
+			gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+			label = "LED 4";
+		};
+		led5: led_5 {
+			gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+			label = "UNUSED";
+		};
+		led6: led_6 {
+			gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+			label = "FRONT PANEL LED 1";
+		};
+		led7: led_7 {
+			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
+			label = "FRONT PANEL LED 2";
+		};
+		led8: led_8 {
+			gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+			label = "FRONT PANEL LED 3";
+		};
+		led9: led_9 {
+			gpios = <&gpio0 24 GPIO_ACTIVE_HIGH>;
+			label = "PSU RESET";
+		};
+
+	};
+	
+
+	buttons {
+		compatible = "gpio-keys";
+		button1: button_1 {
+			gpios = <&gpio0 17 GPIO_PULL_DOWN>;
+			label = "FRONT PANEL BUTTON 1 (SW1)";
+		};
+		button2: button_2 {
+			gpios = <&gpio0 19 GPIO_PULL_DOWN>;
+			label = "FRONT PANEL BUTTON 2 (SW2)";
+		};
+		button3: button_3 {
+			gpios = <&gpio0 25 GPIO_PULL_DOWN>;
+			label = "PSU INT";
+		};
+		button4: button_4 {
+			gpios = <&gpio0 1 GPIO_PULL_DOWN>;
+			label = "PSU PG";
+		};
+	};
+
+	/* These aliases are provided for compatibility with samples */
+	aliases {
+		led_out1 = &led1;
+		led_out2 = &led2;
+		led_out3 = &led3;
+		led_out4 = &led4;
+		output5 = &led5;
+		led_front1 = &led6;
+		led_front2 = &led7;
+		led_front3 = &led8;
+		psu_reset = &led9;
+
+		sw1 = &button1;
+		sw2 = &button2;
+		psu_int = &button3;		
+		psu_pg = &button4;
+	};
+
+
+};
+
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	status = "okay";
+
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+	
+};
+
+
+
+&flash0 {
+
+	partitions {
+		compatible = "fixed-partitions";
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x000000000 0x0000C000>;
+		};
+		slot0_partition: partition@c000 {
+			label = "image-0";
+			reg = <0x0000C000 0x00067000>;
+		};
+		slot1_partition: partition@73000 {
+			label = "image-1";
+			reg = <0x00073000 0x00067000>;
+		};
+		scratch_partition: partition@da000 {
+			label = "image-scratch";
+			reg = <0x000da000 0x0001e000>;
+		};
+
+		/*
+		 * The flash starting at 0x000f8000 and ending at
+		 * 0x000fffff is reserved for use by the application.
+		 */
+
+		/*
+		 * Storage partition will be used by FCB/LittleFS/NVS
+		 * if enabled.
+		 */
+		storage_partition: partition@f8000 {
+			label = "storage";
+			reg = <0x000f8000 0x00008000>;
+		};
+	};
+};
+
+zephyr_udc0: &usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
+};

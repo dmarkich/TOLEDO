@@ -1,0 +1,37 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20
+    },
+    "configurePresets": [
+        {
+            "name": "build",
+            "displayName": "Build for NRF_TOLEDO",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "NCS_TOOLCHAIN_VERSION": "NONE",
+                "BOARD": "nrf_toledo",
+                "BOARD_ROOT": "$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI/boards;$env{ZEPHYR_BASE}/../zephyr/samples/boards/nrf/mesh/onoff_level_lighting_vnd_app;$env{ZEPHYR_BASE}/../TOLEDO/light_ctrl;$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI",
+                "CONFIG_DEBUG_OPTIMIZATIONS": "y",
+                "CONFIG_DEBUG_THREAD_INFO": "y",
+                "CONF_FILE": "$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI/prj.conf",
+                "DTC_OVERLAY_FILE": "$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI/app.overlay"
+            }
+        },
+        {
+            "name": "build_bl654",
+            "displayName": "Build for NRF_TOLEDO",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build_toledo",
+            "cacheVariables": {
+                "NCS_TOOLCHAIN_VERSION": "NONE",
+                "BOARD": "nrf_toledo",
+                "BOARD_ROOT": "$env{ZEPHYR_BASE}/../;$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI",
+                "DTC_OVERLAY_FILE": "$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI/app.overlay",
+                "CONF_FILE": "$env{ZEPHYR_BASE}/../TOLEDO/POWERBANK_MINI/prj.conf"
+            }
+        }
+    ]
+}

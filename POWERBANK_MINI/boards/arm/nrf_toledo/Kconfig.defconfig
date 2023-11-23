@@ -1,0 +1,22 @@
+# BL654 DVK board configuration
+
+# Copyright (c) 2019 Laird Connectivity
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_NRF_TOLEDO
+
+config BOARD
+	default "nrf_toledo"
+
+config BT_CTLR
+	default BT
+
+# Enable UART driver, needed for CDC ACM
+config SERIAL
+	default y
+
+config I2C
+	default y
+
+
+endif # BOARD_NRF_TOLEDO
