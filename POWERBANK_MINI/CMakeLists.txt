@@ -13,9 +13,11 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(NONE)
 
 # NORDIC SDK APP START
-target_sources(app PRIVATE
-	src/main.c
-	src/model_handler.c)
+FILE(GLOB src src/*.c)
+
+target_sources(app PRIVATE 
+    ${src}
+)
 target_include_directories(app PRIVATE include)
 # NORDIC SDK APP END
 
