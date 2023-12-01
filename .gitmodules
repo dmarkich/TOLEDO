@@ -1,0 +1,3 @@
+[submodule "POWERBANK_MINI/mcuboot"]
+	path = POWERBANK_MINI/mcuboot
+	url = https://github.com/mcu-tools/mcuboot.git
