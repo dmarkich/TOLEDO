@@ -10,7 +10,16 @@
         "main.h": "c",
         "soc.h": "c",
         "stdio.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "dk_buttons_and_leds.h": "c",
+        "bluetooth.h": "c",
+        "gatt.h": "c",
+        "lamp.h": "c",
+        "gpio.h": "c",
+        "models.h": "c",
+        "model_handler.h": "c",
+        "lc_pwm_led.h": "c",
+        "status_led.h": "c"
     },
     "nrf-connect.toolchain.path": "${nrf-connect.toolchain:2.5.0}",
     "nrf-connect.topdir": "${nrf-connect.sdk:2.5.0}"

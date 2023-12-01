@@ -9,6 +9,7 @@
 #include <dk_buttons_and_leds.h>
 #include "model_handler.h"
 #include "lc_pwm_led.h"
+#include <lamp.h>
 
 #define PWM_SIZE_STEP 512
 
@@ -31,16 +32,16 @@ static void attention_blink(struct k_work *work)
 {
 	static int idx;
 	const uint8_t pattern[] = {
-#if DT_NODE_EXISTS(DT_ALIAS(led0))
+#if DT_NODE_EXISTS(DT_ALIAS(led_out1))
 		BIT(0),
 #endif
-#if DT_NODE_EXISTS(DT_ALIAS(led1))
+#if DT_NODE_EXISTS(DT_ALIAS(led_out2))
 		BIT(1),
 #endif
-#if DT_NODE_EXISTS(DT_ALIAS(led2))
+#if DT_NODE_EXISTS(DT_ALIAS(led_out3))
 		BIT(2),
 #endif
-#if DT_NODE_EXISTS(DT_ALIAS(led3))
+#if DT_NODE_EXISTS(DT_ALIAS(led_out4))
 		BIT(3),
 #endif
 	};
@@ -120,6 +121,7 @@ static void periodic_led_work(struct k_work *work)
 	k_work_reschedule(&l_ctx->per_work, K_MSEC(l_ctx->time_per));
 apply_and_print:
 	lc_pwm_led_set(l_ctx->current_lvl);
+	set_lamp(l_ctx->current_lvl);
 	printk("Current light lvl: %u/65535\n", l_ctx->current_lvl);
 }
 

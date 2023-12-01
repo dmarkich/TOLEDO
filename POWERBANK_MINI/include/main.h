@@ -1,10 +1,5 @@
 
-#include <zephyr/bluetooth/bluetooth.h>
-#include <bluetooth/mesh/models.h>
-#include <bluetooth/mesh/dk_prov.h>
-#include <dk_buttons_and_leds.h>
-#include "model_handler.h"
-#include "lc_pwm_led.h"
+
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
 #include <zephyr/drivers/i2c.h>
@@ -18,9 +13,16 @@
 #include <stdbool.h>
 #include <limits.h>
 
+#include <zephyr/bluetooth/bluetooth.h>
 #include <zephyr/bluetooth/uuid.h>
 #include <zephyr/bluetooth/gatt.h>
 #include <zephyr/bluetooth/hci.h>
+#include <bluetooth/mesh/models.h>
+#include <bluetooth/mesh/dk_prov.h>
+#include <dk_buttons_and_leds.h>
+#include "model_handler.h"
+#include "lc_pwm_led.h"
+
 
 #include <zephyr/device.h>
 #include <zephyr/devicetree.h>
@@ -39,7 +41,6 @@
 // #include "nrf_log.h"
 // #include "nrf_log_ctrl.h"
 // #include "nrf_log_default_backends.h"
-
 
 #include <zephyr/drivers/flash.h>
 #include <zephyr/storage/flash_map.h>
@@ -96,4 +97,11 @@ static const nrf_saadc_input_t ANALOG_INPUT_MAP[ADC_CHANNELS_IN_USE] = {
 	NRF_SAADC_INPUT_AIN0, NRF_SAADC_INPUT_AIN1, NRF_SAADC_INPUT_AIN2, NRF_SAADC_INPUT_AIN3,
 	NRF_SAADC_INPUT_AIN4, NRF_SAADC_INPUT_AIN5, NRF_SAADC_INPUT_AIN6, NRF_SAADC_INPUT_AIN7};
 */
+
+#include <bt.h>
+
+// ------------------------------- LEDS DEFINES --------------------------------------
+#include "lamp.h" 
+#include "status_led.h"
+// ------------------------------- ------------ --------------------------------------
 

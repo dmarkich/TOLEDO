@@ -9,9 +9,6 @@
  */
 #include <main.h>
 
-
-static K_SEM_DEFINE(ble_init_ok, 0, 1);
-
 // static const struct i2c_dt_spec dev_i2cpsu = I2C_DT_SPEC_GET(I2C0_NODE1);
 
 int16_t adc_psu_stat;
@@ -186,43 +183,18 @@ static void adc_configure(void)
 
 */
 
-static void bt_ready(int err)
-{
-	if (err) {
-		printk("Bluetooth init failed (err %d)\n", err);
-		return;
-	}
 
-	printk("Bluetooth initialized\n");
-
-	dk_leds_init();
-	dk_buttons_init(NULL);
-
-	err = bt_mesh_init(bt_mesh_dk_prov_init(), model_handler_init());
-	if (err) {
-		printk("Initializing mesh failed (err %d)\n", err);
-		return;
-	}
-
-	if (IS_ENABLED(CONFIG_SETTINGS)) {
-		settings_load();
-	}
-
-	/* This will be a no-op if settings_load() loaded provisioning info */
-	bt_mesh_prov_enable(BT_MESH_PROV_ADV | BT_MESH_PROV_GATT);
-
-	printk("Mesh initialized\n");
-
-	model_handler_start();
-}
+#define SLEEP_TIME_MS   500
 
 int main(void)
 {
 	int err;
 
 	printk("Initializing...\n");
+	init_front_leds();
+	init_lamp_leds();
 
-
+	set_led_status(40);
 	err = bt_enable(bt_ready);
 	if (err) {
 		printk("Bluetooth init failed (err %d)\n", err);
@@ -237,6 +209,31 @@ int main(void)
 	*/
 
 	k_sem_give(&ble_init_ok);
+
+	
+
+	
+	// int ret;
+	// while (1) {
+	// 	ret = gpio_pin_toggle_dt(&led_lamp1);
+	// 	if (ret < 0) {
+	// 		return 0;
+	// 	}
+	// 	ret = gpio_pin_toggle_dt(&led_lamp2);
+	// 	if (ret < 0) {
+	// 		return 0;
+	// 	}
+	// 	ret = gpio_pin_toggle_dt(&led_lamp3);
+	// 	if (ret < 0) {
+	// 		return 0;
+	// 	}
+	// 	ret = gpio_pin_toggle_dt(&led_lamp4);
+	// 	if (ret < 0) {
+	// 		return 0;
+	// 	}
+	// 	k_msleep(SLEEP_TIME_MS);
+	// }
+	
 
 	// if (!device_is_ready(dev_i2cpsu.bus))
 	// {
@@ -267,20 +264,6 @@ int main(void)
 	{
 		k_sleep(K_MSEC(1000));
 	}
-}
-
-
-void ble_write_thread(void)
-{
-	k_sem_take(&ble_init_ok, K_FOREVER);
-
-	// 2ND THREAD STARTED AFTER BT STACK INITIALIZED - PSU MANAGEMENT
-
-	for (;;)
-	{	
-		k_sleep(K_MSEC(1000));
-	}
-	
 }
 
 K_THREAD_DEFINE(ble_write_thread_id, STACKSIZE, ble_write_thread, NULL, NULL,
