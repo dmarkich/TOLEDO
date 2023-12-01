@@ -88,20 +88,20 @@
 
 	/* These aliases are provided for compatibility with samples */
 	aliases {
-		led_out1 = &led1;
-		led_out2 = &led2;
-		led_out3 = &led3;
-		led_out4 = &led4;
+		led-out1 = &led1;
+		led-out2 = &led2;
+		led-out3 = &led3;
+		led-out4 = &led4;
 		output5 = &led5;
-		led_front1 = &led6;
-		led_front2 = &led7;
-		led_front3 = &led8;
-		psu_reset = &led9;
+		led-front1 = &led6;
+		led-front2 = &led7;
+		led-front3 = &led8;
+		psu-reset = &led9;
 
 		sw1 = &button1;
 		sw2 = &button2;
-		psu_int = &button3;		
-		psu_pg = &button4;
+		psu-int = &button3;
+		psu-pg = &button4;
 	};
 
 
