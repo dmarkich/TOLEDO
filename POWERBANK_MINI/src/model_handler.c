@@ -121,7 +121,8 @@ static void periodic_led_work(struct k_work *work)
 	k_work_reschedule(&l_ctx->per_work, K_MSEC(l_ctx->time_per));
 apply_and_print:
 	lc_pwm_led_set(l_ctx->current_lvl);
-	set_lamp(l_ctx->current_lvl);
+	// set_lamp(l_ctx->current_lvl);
+	fade_lamp();
 	printk("Current light lvl: %u/65535\n", l_ctx->current_lvl);
 }
 
