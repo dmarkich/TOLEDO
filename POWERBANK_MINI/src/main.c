@@ -192,8 +192,9 @@ int main(void)
 
 	printk("Initializing...\n");
 	init_front_leds();
+	init_lamp_leds();
 
-	set_led_status(20);
+	set_led_status(40);
 	err = bt_enable(bt_ready);
 	if (err) {
 		printk("Bluetooth init failed (err %d)\n", err);

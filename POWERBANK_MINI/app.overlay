@@ -13,13 +13,6 @@
 		nordic,nus-uart = &uart0;
 	};
 
-	aliases {
-		led-out1 = &pwm0;
-		led-out2 = &pwm1;
-		led-out3 = &pwm2;
-		led-out4 = &pwm3;
-	};
-
 };
 
 &pinctrl {
@@ -38,7 +31,7 @@
 			low-power-enable;
 		};
 	};
-
+/*
 	pwm0_default_alt: pwm0_default_alt {
 		group1 {
 			psels = <NRF_PSEL(PWM_OUT0, 1, 13)>;
@@ -94,6 +87,7 @@
 			low-power-enable;
 		};
 	};
+	*/
 };
 
 &i2c0 {
@@ -129,7 +123,7 @@
 
 };
 
-
+/*
 &pwm0 {
 	status = "okay";
 	label = "led1out";
@@ -161,5 +155,5 @@
 	pinctrl-1 = <&pwm3_sleep_alt>;
 	pinctrl-names = "default", "sleep";
 };
-
+*/
 
