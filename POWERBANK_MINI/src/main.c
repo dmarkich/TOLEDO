@@ -192,7 +192,7 @@ int main(void)
 
 	printk("Initializing...\n");
 	init_front_leds();
-	init_lamp_leds();
+	// init_lamp_leds();
 
 	set_led_status(40);
 	err = bt_enable(bt_ready);
@@ -211,7 +211,7 @@ int main(void)
 	k_sem_give(&ble_init_ok);
 
 	
-
+	set_lamp_pwm();
 	
 	// int ret;
 	// while (1) {
