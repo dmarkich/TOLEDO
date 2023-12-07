@@ -8,7 +8,7 @@
 
  */
 #include <main.h>
-
+#include <zephyr/smf.h>
 // static const struct i2c_dt_spec dev_i2cpsu = I2C_DT_SPEC_GET(I2C0_NODE1);
 
 int16_t adc_psu_stat;

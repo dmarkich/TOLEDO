@@ -7,6 +7,15 @@
 #ifndef FUEL_GAUGE_H
 #define FUEL_GAUGE_H
 
-int read_gauge(void);
+struct battery_info
+{
+    int voltage;
+    uint32_t runtime_to_empty;
+    uint32_t runtime_to_full;
+    uint8_t relative_state_of_charge;
+};
+extern struct battery_info device_battery;
+
+int read_gauge(struct battery_info *bat_info);
 
 #endif

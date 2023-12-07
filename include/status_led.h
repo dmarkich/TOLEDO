@@ -14,5 +14,6 @@ static const struct gpio_dt_spec led_front3 = GPIO_DT_SPEC_GET(LED_FRONT3, gpios
 
 int init_front_leds(void);
 int set_led_status(int level);
+int set_led_status_state(int first, int second, int third);
 
 #endif
