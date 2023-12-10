@@ -1,9 +1,0 @@
-export PATH=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/usr/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/opt/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/opt/nanopb/generator-bin:/home/carlos/sdk/ncs/toolchains/7795df4459/opt/zephyr-sdk/aarch64-zephyr-elf/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/opt/zephyr-sdk/x86_64-zephyr-elf/bin:/home/carlos/sdk/ncs/toolchains/7795df4459/opt/zephyr-sdk/arm-zephyr-eabi/bin:$PATH
-export LD_LIBRARY_PATH=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/lib:/home/carlos/sdk/ncs/toolchains/7795df4459/usr/lib/x86_64-linux-gnu:/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/lib:$LD_LIBRARY_PATH
-export GIT_EXEC_PATH=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/libexec/git-core
-export GIT_TEMPLATE_DIR=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/share/git-core/templates
-export PYTHONHOME=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local
-export PYTHONPATH=/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/lib/python3.8:/home/carlos/sdk/ncs/toolchains/7795df4459/usr/local/lib/python3.8/site-packages
-export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR=/home/carlos/sdk/ncs/toolchains/7795df4459/opt/zephyr-sdk
-export ZEPHYR_BASE=/home/carlos/sdk/ncs/v2.5.0/zephyr

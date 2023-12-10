@@ -145,9 +145,7 @@
 &led3 {
 	status = "disabled";
 };
-&led4 {
-	status = "disabled";
-};
+
 
 
 &pwm0 {
